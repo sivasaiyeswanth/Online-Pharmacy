@@ -1,0 +1,94 @@
+{% extends 'accounts/main.html' %}
+{% load static %}
+{% block content %}
+<style>
+    .bg-navy {
+        background-color: navy;
+    }
+</style>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-navy fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img src="{% static 'images/favicon.png'%}" alt="" width="40" height="24" class="d-inline-block align-text-top">
+            Medicine Time
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                
+                
+                <li class="nav-item">
+                    <a class="nav-link disabled">Hello, {{request.user}}</a>
+                </li>
+            </ul>
+        </div>
+         <a  class="btn btn-outline-light" href= "{% url 'deliveryaccount' %}"> My Account</a>
+        &nbsp;
+ 
+        <a  class="btn btn-outline-light" href= "{% url 'logout' %}"> Logout</a>
+      </div>
+        
+        &nbsp;
+    </div>
+</nav>
+</br>
+<br/>
+<br/>
+    <!-- Optional JavaScript; choose one of the two! -->
+  <section class="slider-area" style="background-image: url('{% static 'images/slider_bg04.jpg' %}')">
+   
+          <div class="single-slider slider-bg d-flex align-items-center" data-background="{% static 'images/blog_details_img01.jpg' %}">
+                        <div class="container container-inner">
+                            <div class="row align-items-center">
+                                <div class="col-lg-6">
+                                    <div class="slider-content">
+                                        <h4 class="sub-title" data-animation="fadeInUp" data-delay=".3s">WORKS BY <span>TRUST!!</span></h4>
+                                        <h2 class="title" data-animation="fadeInUp" data-delay=".6s">BEST ONLINE PHARMACY</h2>
+                                        <h2 data-animation="fadeInUp" data-delay=".9s">Login for every <span>30 MINS </span>to do Better Service</h2>
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </section>
+</br>
+</br>
+
+
+    <div class="container my-4">
+      <div justify-content: center;>
+        <div class="col">
+          <div class="card shadow-sm">
+           
+            <div class="card-body">
+               
+                <a  class="btn btn-outline-danger" href= "{% url 'Address' %}">Show orders</a>
+                </br><br/>
+                <a  class="btn btn-outline-light" href= "{% url 'MyAddress' %}">Accepted orders</a>
+              <div
+                class="d-flex justify-content-between align-items-center"
+              ></div>
+            </div>
+          </div>
+        </div>
+        
+        </div>
+       
+      </div>
+    </div>
+    
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+   
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    -->
+  {% endblock content %}

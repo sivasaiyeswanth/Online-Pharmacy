@@ -1,0 +1,67 @@
+
+{% extends 'accounts/main.html' %}
+{% load static %}
+{% block content %}
+
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-navy fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img src="{% static 'images/favicon.png'%}" alt="" width="40" height="24" class="d-inline-block align-text-top">
+            Medicine Time
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'buyer' %}">Home</a>
+                </li>
+           <ul class="navbar-nav">
+          
+          <li class="nav-item">
+            <a class="nav-link disabled">Thank You, {{request.user}}</a>
+          </li>
+        </ul>
+
+                
+        </div>
+       
+    </div>
+</nav>
+
+
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    
+    .container {
+      text-align: center;
+      border: 2px solid black;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      padding: 20px;
+    }
+  </style>
+
+
+  <div class="container">
+    <img src="{% static 'images/delivery.jpg' %}"  alt="Image" width="300">
+    <h2>Hey, {{order.Customer.name}}</h2>
+    <h4>Your Order is confirmed!!</h4>
+    <p>You can track the order from Home page</p>
+  </div>
+</body>
+</html>
+  
+ 
+</div>
+ 
+
+{% endblock content%}

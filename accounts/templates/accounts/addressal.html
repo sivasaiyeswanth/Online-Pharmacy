@@ -1,0 +1,143 @@
+{% extends 'accounts/main.html' %}
+{% load static %}
+{% block content %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+  $(".accept-btn").click(function() {
+    var button = $(this); // Get the button that was clicked
+    var orderId = button.attr("data-order-id"); // Get the order ID from the data attribute
+    $.ajaxSetup({
+  headers: {
+    'X-CSRFToken': '{{ csrf_token }}'
+  }
+});
+    // Make an AJAX request to update the order status and assign the delivery agent
+    $.ajax({
+      url: '/update_order/', // Replace with the appropriate URL for your Django view
+      method: 'POST',
+      data: {
+        'order_id': orderId,
+        'delivery_agent_id': '{{ delivery_agent.id }}'  // Replace with the ID of the logged-in delivery agent
+      },
+      success: function(response) {
+        if (response.success) {
+          button.text('Accepted'); // Update the button text to "Accepted"
+          button.prop('disabled', true); // Optionally disable the button to prevent further clicks
+        }
+      },
+      error: function(xhr, errmsg, err) {
+        console.log(errmsg); // Handle any errors
+      }
+    });
+  });
+});
+</script>
+
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+   
+     
+     <style>
+  .navbar {
+    background-color: #000080; /* Dark blue color */
+  }
+
+  .container {
+    margin: 20;
+    width: 80%;
+    background-color: #f2f2f2;
+    padding: 20px;
+    text-align:center;
+  }
+</style>
+    
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+
+    <title>Medicine Time</title>
+  </head>
+  <body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-navy fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img src="{% static 'images/favicon.png'%}" alt="" width="40" height="24" class="d-inline-block align-text-top">
+            Medicine Time
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="btn btn-outline-light" href="{% url 'deliveryagenthome' %}" style="border-radius:12px;text-transform: none;">Home</a>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link disabled">Hello, {{request.user}}</a>
+                </li>
+            </ul>
+        </div>
+        
+        &nbsp;
+        <a  class="btn btn-outline-light" href= "{% url 'MyAddress' %}">Accepted orders</a>
+        &nbsp;
+        &nbsp;
+        
+        &nbsp;
+    </div>
+</nav>
+<div class="container">
+    <br>
+    <div class="row">
+        <div class="col-lg-12">
+            
+
+            <br>
+            <div class="box-element">
+                <div class="cart-row">
+                    
+                    <div style="flex:2"><strong>Customer</strong></div>
+                    <div style="flex:1"><strong>Address</strong></div>
+                    <div style="flex:1"><strong>Door Number</strong></div>
+                     <div style="flex:1"><strong>Mobile Number</strong></div>
+                    <div style="flex:1"><strong>Status</strong></div>
+                </div>
+                {% for a in orders %}
+                <div class="cart-row">
+                    
+                    <div style="flex:2">
+                            <p>{{a.Customer}}</p>
+                    </div>
+                    <div style="flex:1">
+                          <p>{{a.Customer.address}}</p>
+                    </div>
+                    <div style="flex:1">
+                        <p>{{a.Customer.door_number}}</p>
+                       
+                    </div>
+                    <div style="flex:1"> <p class="quantity">{{a.Customer.number}}</p></div>
+                    <div><a class="btn btn-outline-success" href="{% url 'vieword' a.Customer.id %}" >View Order</a> 
+   
+                </div>
+              
+               <button id="acceptBtn{{ a.id }}" class="accept-btn btn-outline-dark" style="border-radius:12px;" data-order-id="{{ a.id }}">Accept</button>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+
+</div>
+  
+  
+  </div> 
+ {% endblock content%}
