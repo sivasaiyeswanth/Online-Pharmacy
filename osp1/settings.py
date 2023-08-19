@@ -25,7 +25,7 @@ SECRET_KEY = 'vu@wru2@yjh1oqye4k%c@(gs_twv3yb_*ono^nda6*72e%0$41'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*','.vercel.app', '.now.sh']
+ALLOWED_HOSTS = ['.vercel.app', '.now.sh']
 
 
 # Application definition
@@ -75,6 +75,13 @@ WSGI_APPLICATION = 'osp1.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
+
 
 
 
@@ -130,5 +137,3 @@ EMAIL_HOST = 'smtp.gamil.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_PASSWORD = "subbarao1"
-STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),
-STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles_build','static')
